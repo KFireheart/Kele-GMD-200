@@ -4,30 +4,22 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public GameObject enemyPrefab;
+    [SerializeField] private float respawnY = 10;
+    private float respawnX;
+
+    private Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-        StartCoroutine(Co_SpawnEnemies());
+        respawnX = transform.position.x;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Respawn()
     {
-        
+        gameObject.SetActive(true);
+        transform.position = new Vector2 (respawnX, respawnY);
+        rb.velocity = Vector2.zero;
     }
-
-    IEnumerator Co_SpawnEnemies()
-    {
-        while (true)
-        {
-            Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-            yield return new WaitForSeconds(2.0f);
-
-            Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-            yield return new WaitForSeconds(1.0f);
-            Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-        }
-    }
+    
 }

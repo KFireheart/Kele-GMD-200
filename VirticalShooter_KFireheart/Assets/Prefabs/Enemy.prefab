@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 4229301466746549175}
   - component: {fileID: 6832598857458528886}
   - component: {fileID: 5050770914143211385}
+  - component: {fileID: 4563790035646739584}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,4 +126,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25dc6a58dc146194bb98c61c88aac433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 3168343115335105141}
+  respawnY: 10
+--- !u!114 &4563790035646739584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3168343115335105141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b98c59e3e345c9341b7251c70d5bfeda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 4801414134630024080, guid: 24f67fca001e20a44aaf9f2e094c89ac, type: 3}
+  bulletPos: {fileID: 0}
