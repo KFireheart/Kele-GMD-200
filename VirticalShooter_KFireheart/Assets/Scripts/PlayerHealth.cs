@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,17 +8,20 @@ public class PlayerHealth : MonoBehaviour
 {
 
     public int health;
-    public float maxHealth;
     public int numOfHearts;
 
     public Image[] hearts;
     public Sprite fullHearts;
-    public Sprite halfHearts;
     public Sprite emptyHearts;
+
+    public GameOver gameOverScript;
+
+    private bool isDead;
+
     // Start is called before the first frame update
     void Start()
     {
-        maxHealth = health;
+    
     }
 
     // Update is called once per frame
@@ -52,6 +56,13 @@ public class PlayerHealth : MonoBehaviour
             {
                 hearts[i].enabled = false;
             }
+        }
+
+        if (health <= 0 && !isDead)
+        {
+            isDead = true;
+            gameOverScript.gameOver();
+            Debug.Log("Dead");
         }
     }
 }

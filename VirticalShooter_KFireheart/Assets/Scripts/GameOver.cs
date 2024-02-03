@@ -9,6 +9,8 @@ public class GameOver : MonoBehaviour
 
     public GameObject gameOverUI;
 
+
+
     // Update is called once per frame
     void Update()
     {
@@ -18,5 +20,17 @@ public class GameOver : MonoBehaviour
     public void gameOver()
     {
         gameOverUI.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void quit()
+    {
+        Debug.Log("Quitting");
+        Application.Quit();
     }
 }
