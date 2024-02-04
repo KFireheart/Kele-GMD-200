@@ -10,7 +10,7 @@ public class EnemyBullet : MonoBehaviour
     private float timer;
 
 
-    // Start is called before the first frame update
+    //looks for game object with "player" tag, and moves tward them
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -23,7 +23,7 @@ public class EnemyBullet : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
     }
 
-    // Update is called once per frame
+    //puts a 10 second timer on the bullet, when the timer is up it gets destroyed
     void Update()
     {
         timer += Time.deltaTime;
@@ -34,6 +34,7 @@ public class EnemyBullet : MonoBehaviour
         }
     }
 
+    //checks to see if the bullet hit the player, if so takes 1 hp away, and destroys the game object
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))

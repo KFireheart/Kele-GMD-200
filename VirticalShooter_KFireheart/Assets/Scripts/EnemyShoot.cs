@@ -10,20 +10,17 @@ public class EnemyShoot : MonoBehaviour
     private GameObject player;
     
 
-    // Start is called before the first frame update
+    //Starts shooting every 1 second, and makes the liftime 2 seconds
     void Start()
     {
         InvokeRepeating("shoot", 1f, 2f);
     }
 
-    // Update is called once per frame
-    void Update()
-    { 
-       
-    }
 
+    //Spawns bullet and plays sfx
     void shoot()
     {
         Instantiate(bulletPrefab, bulletPos.position, Quaternion.identity);
+        AudioManager.Instance.PlaySFX("EnemyPew");
     }
 }

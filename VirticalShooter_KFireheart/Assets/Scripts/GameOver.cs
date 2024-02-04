@@ -9,25 +9,28 @@ public class GameOver : MonoBehaviour
 
     public GameObject gameOverUI;
 
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    //Runs enables game over menu
     public void gameOver()
     {
         gameOverUI.SetActive(true);
         Time.timeScale = 0f;
     }
 
+    //Reloads the current scene
     public void restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f;
     }
 
+    //Loads main menu
+    public void Menu()
+    {
+        SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1f;
+    }
+
+    //Closes application
     public void quit()
     {
         Debug.Log("Quitting");

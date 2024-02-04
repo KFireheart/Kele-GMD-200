@@ -35,7 +35,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
 
-
+        //Checks to see what the current health is and then chnage the visible hearts acordingly
         for (int i = 0; i < hearts.Length; i++) 
         { 
             if(i < health)
@@ -58,6 +58,7 @@ public class PlayerHealth : MonoBehaviour
             }
         }
 
+        //Checks to see if the player is dead, if isDead = true it runs the game over screen
         if (health <= 0 && !isDead)
         {
             isDead = true;

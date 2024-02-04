@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField] private float respawnY = 10;
-    private float respawnX;
+    [SerializeField] float enemyHealth, maxHealth = 3f;
 
-    private Rigidbody2D rb;
 
-    // Start is called before the first frame update
-    void Start()
+    //Sets enemyHealth equal to maxhealth
+    private void Start()
     {
-        respawnX = transform.position.x;
+        enemyHealth = maxHealth;
     }
 
-    public void Respawn()
+    //subtracts 1 hp point each time enemy gets hit
+    public void takeDamage(float damageAmount)
     {
-        gameObject.SetActive(true);
-        transform.position = new Vector2 (respawnX, respawnY);
-        rb.velocity = Vector2.zero;
+        enemyHealth -= damageAmount;
+
+        if (enemyHealth <= 0)
+        { 
+            Destroy(gameObject);
+        }
     }
-    
 }

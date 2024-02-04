@@ -9,7 +9,7 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenuUI;
 
-    // Update is called once per frame
+    // Checks to see if the player has hit the escape key, if so run Resume() or Pause() functions
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -24,6 +24,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    //sets time scale = 1 and closes the pause menu
    public void Resume()
     {
         pauseMenuUI.SetActive(false);
@@ -31,6 +32,7 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
     }
 
+    //Sets timescale = 0, pauses the game, and opens the menu
     void Pause()
     {
         pauseMenuUI.SetActive(true);
@@ -38,6 +40,7 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = true;
     }
 
+    //Closes the game
     public void QuitGame()
     {
         Debug.Log("Quitting");

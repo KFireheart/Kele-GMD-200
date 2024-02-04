@@ -14,16 +14,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float boundsDown = -15f;
     private Rigidbody2D _rb;
 
+    //Gets the rigid body 2d on the player
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
     }
 
+    //gets what imput the player has pressed(WASD)
     private void Update()
     {
         _input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
     }
 
+    //moves the player acordingly
     private void FixedUpdate()
     {
         _rb.velocity = _input * moveSpeed;

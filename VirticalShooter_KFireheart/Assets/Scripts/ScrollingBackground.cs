@@ -9,7 +9,7 @@ public class ScrollingBackground : MonoBehaviour
 
     [SerializeField] private Renderer bgRenderer;
    
-    // Update is called once per frame
+   //on update it makes the backgroudn loop on the y axis
     void Update()
     {
         bgRenderer.material.mainTextureOffset += new Vector2(0, speed * Time.deltaTime);
