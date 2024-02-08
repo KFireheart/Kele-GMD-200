@@ -17,7 +17,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isWallJumping;
     private float wallJumpingDirection;
     private float wallJumpingTime = 0.2f;
-    private float wallJumpingCounter = 0.4f;
+    private float wallJumpingCounter;
+    private float wallJumpingDuration = 0.4f;
     private Vector2 wallJumpingPower = new Vector2(8f, 16f);
 
     [SerializeField] private Rigidbody2D rb;
@@ -45,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if(Input.GetButtonDown("Jump") && rb.velocity.y > 0f)
+        if(Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
