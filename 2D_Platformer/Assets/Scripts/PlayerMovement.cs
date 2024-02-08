@@ -52,7 +52,8 @@ public class PlayerMovement : MonoBehaviour
 
         WallSlide();
         WallJump();
-        if(isWallJumping)
+
+        if(!isWallJumping)
         {
             Flip();
         }
@@ -98,11 +99,11 @@ public class PlayerMovement : MonoBehaviour
         if (isWallSliding)
         {
             isWallSliding = false;
-            wallJumpingDirection = -transform.lossyScale.x;
+            wallJumpingDirection = -transform.localScale.x;
             wallJumpingCounter = wallJumpingTime;
 
 
-            CancelInvoke(nameof(StoppedWallJuping));
+            CancelInvoke(nameof(StopWallJumping));
         }
         else
         {
@@ -115,19 +116,19 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
             wallJumpingCounter = 0f;
 
-            if(transform.lossyScale.x  != wallJumpingDirection)
+            if(transform.localScale.x  != wallJumpingDirection)
             {
                 isFacingRight = !isFacingRight;
                 Vector3 localScale = transform.localScale;
                 localScale.x *= -1f;
                 transform.localScale = localScale;
             }
-            Invoke(nameof(StoppedWallJuping), wallJumpingDirection);
+            Invoke(nameof(StopWallJumping), wallJumpingDirection);
         }
     }
 
 
-    private void StoppedWallJuping()
+    private void StopWallJumping()
     {
         isWallSliding = false;
     }
@@ -139,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
-            localScale.x *= -1;
+            localScale.x *= -1f;
             transform.localScale = localScale; 
         }
     }
