@@ -9,8 +9,16 @@ public class PlayerMovement : MonoBehaviour
     public float jumpingPower = 16f;
     private bool isFacingRight = true;
 
+    private bool doubleJump;
+
     private bool isWallSliding;
     private float wallSlidingSpeed = 2f;
+
+    private bool isWallJumping;
+    private float wallJumpingDirection;
+    private float wallJumpingTime = 0.2f;
+    private float wallJumpingCounter = 0.4f;
+    private Vector2 wallJumpingPower = new Vector2(8f, 16f);
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -24,9 +32,17 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontal = Input.GetAxisRaw("Horizontal");
 
-        if(Input.GetButtonDown("Jump") && IsGrounded())
+        if (IsGrounded() && !Input.GetButtonDown("Jump"))
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            doubleJump = false;
+        }
+
+        if(Input.GetButtonDown("Jump"))
+        {
+            if (IsGrounded() || doubleJump)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            }
         }
 
         if(Input.GetButtonDown("Jump") && rb.velocity.y > 0f)
@@ -35,10 +51,24 @@ public class PlayerMovement : MonoBehaviour
         }
 
         WallSlide();
+        WallJump();
+        if(isWallJumping)
+        {
+            Flip();
+        }
 
-        Flip();
+        
     }
 
+    private void FixedUpdate()
+    {
+        if (!isWallJumping)
+        {
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        }
+    }
+
+          
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
@@ -59,14 +89,49 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             isWallSliding = false;
+           
+        }
+    }
+
+    private void WallJump()
+    {
+        if (isWallSliding)
+        {
+            isWallSliding = false;
+            wallJumpingDirection = -transform.lossyScale.x;
+            wallJumpingCounter = wallJumpingTime;
+
+
+            CancelInvoke(nameof(StoppedWallJuping));
+        }
+        else
+        {
+            wallJumpingCounter -= Time.deltaTime;
+        }
+
+        if(Input.GetButtonDown("Jump") && wallJumpingCounter > 0f)
+        {
+            isWallJumping = true;
+            rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
+            wallJumpingCounter = 0f;
+
+            if(transform.lossyScale.x  != wallJumpingDirection)
+            {
+                isFacingRight = !isFacingRight;
+                Vector3 localScale = transform.localScale;
+                localScale.x *= -1f;
+                transform.localScale = localScale;
+            }
+            Invoke(nameof(StoppedWallJuping), wallJumpingDirection);
         }
     }
 
 
-    private void FixedUpdate()
+    private void StoppedWallJuping()
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        isWallSliding = false;
     }
+   
 
     private void Flip()
     {
