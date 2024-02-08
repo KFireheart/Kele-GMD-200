@@ -9,8 +9,6 @@ public class PlayerMovement : MonoBehaviour
     public float jumpingPower = 16f;
     private bool isFacingRight = true;
 
-    private bool doubleJump;
-
     private bool isWallSliding;
     private float wallSlidingSpeed = 2f;
 
@@ -33,17 +31,9 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (IsGrounded() && !Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && IsGrounded())
         {
-            doubleJump = false;
-        }
-
-        if(Input.GetButtonDown("Jump"))
-        {
-            if (IsGrounded() || doubleJump)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-            }
+            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }
 
         if(Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
@@ -67,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
         if (!isWallJumping)
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
         }
     }
 
@@ -83,8 +74,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallSlide()
     {
+        
+
         if (IsWalled() && !IsGrounded() && horizontal != 0f)
         {
+            
             isWallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
         }
@@ -124,14 +118,14 @@ public class PlayerMovement : MonoBehaviour
                 localScale.x *= -1f;
                 transform.localScale = localScale;
             }
-            Invoke(nameof(StopWallJumping), wallJumpingDirection);
+            Invoke(nameof(StopWallJumping), wallJumpingDuration);
         }
     }
 
 
     private void StopWallJumping()
     {
-        isWallSliding = false;
+        isWallJumping = false;
     }
    
 
