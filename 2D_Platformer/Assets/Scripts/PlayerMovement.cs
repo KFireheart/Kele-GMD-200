@@ -17,19 +17,9 @@ public class PlayerMovement : MonoBehaviour
     private float wallJumpingTime = 0.2f;
     private float wallJumpingCounter;
     private float wallJumpingDuration = 0.4f;
-    private Vector2 wallJumpingPower = new Vector2(8f, 16f);
+    private Vector2 wallJumpingPower = new Vector2(8f, 14f);
 
-    private bool _isMoving = false;
-    /*private bool IsMoving { get 
-        {
-            return _isMoving;
-        }
-        private set
-        {
-            _isMoving = value;
-        } 
-    }*/
-
+    
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -145,9 +135,9 @@ public class PlayerMovement : MonoBehaviour
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
             isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale; 
+
+
+            transform.Rotate(0f, 180f, 0f);
         }
     }
 }
