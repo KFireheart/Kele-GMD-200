@@ -19,14 +19,25 @@ public class PlayerMovement : MonoBehaviour
     private float wallJumpingDuration = 0.4f;
     private Vector2 wallJumpingPower = new Vector2(8f, 14f);
 
-    
+    Animator anim;
+    string currentState;
+    const string PLAYER_IDLE = "SpaceGuy_Idle_Clip";
+    const string PLAYER_JUMP = "SpaceGuy_Jump_Clip";
+    const string PLAYER_WALK = "Walk_Clip";
+
+
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
 
-   
+
+    private void Start()
+    {
+        anim = gameObject.GetComponent<Animator>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -35,22 +46,24 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            ChangeAnimationState(PLAYER_JUMP);
         }
 
-        if(Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            ChangeAnimationState(PLAYER_JUMP);
         }
 
         WallSlide();
         WallJump();
 
-        if(!isWallJumping)
+        if (!isWallJumping)
         {
             Flip();
         }
 
-        
+
     }
 
     private void FixedUpdate()
@@ -60,9 +73,18 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
         }
+
+
+        if(!IsAnimationPlaying(anim, PLAYER_JUMP))
+        {
+            if (IsGrounded())
+            {
+                ChangeAnimationState(PLAYER_WALK);
+            }
+        }
     }
 
-          
+
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
@@ -75,18 +97,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallSlide()
     {
-        
+
 
         if (IsWalled() && !IsGrounded() && horizontal != 0f)
         {
-            
+
             isWallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
         }
         else
         {
             isWallSliding = false;
-           
+
         }
     }
 
@@ -106,13 +128,13 @@ public class PlayerMovement : MonoBehaviour
             wallJumpingCounter -= Time.deltaTime;
         }
 
-        if(Input.GetButtonDown("Jump") && wallJumpingCounter > 0f)
+        if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f)
         {
             isWallJumping = true;
             rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
             wallJumpingCounter = 0f;
 
-            if(transform.localScale.x  != wallJumpingDirection)
+            if (transform.localScale.x != wallJumpingDirection)
             {
                 isFacingRight = !isFacingRight;
                 Vector3 localScale = transform.localScale;
@@ -128,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
     {
         isWallJumping = false;
     }
-   
+
 
     private void Flip()
     {
@@ -138,6 +160,30 @@ public class PlayerMovement : MonoBehaviour
 
 
             transform.Rotate(0f, 180f, 0f);
+        }
+    }
+
+    private void ChangeAnimationState(string newState)
+    {
+        if (newState == currentState)
+        {
+            return;
+        }
+        anim.Play(newState);
+        currentState = newState;
+
+    }
+
+    bool IsAnimationPlaying(Animator animator, string stateName)
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName(stateName) &&
+            animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }
