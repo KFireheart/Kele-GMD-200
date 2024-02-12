@@ -21,9 +21,9 @@ public class PlayerMovement : MonoBehaviour
 
     Animator anim;
     string currentState;
-    const string PLAYER_IDLE = "SpaceGuy_Idle_Clip";
-    const string PLAYER_JUMP = "SpaceGuy_Jump_Clip";
-    const string PLAYER_WALK = "Walk_Clip";
+    const string PLAYER_IDLE = "Idle";
+    const string PLAYER_JUMP = "Jump";
+    const string PLAYER_WALK = "Walking";
 
 
     [SerializeField] private Rigidbody2D rb;
@@ -46,13 +46,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-            ChangeAnimationState(PLAYER_JUMP);
+            
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-            ChangeAnimationState(PLAYER_JUMP);
         }
 
         WallSlide();
@@ -71,7 +70,17 @@ public class PlayerMovement : MonoBehaviour
         if (!isWallJumping)
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+            ChangeAnimationState(PLAYER_WALK);
 
+        }
+
+        
+        if(!IsAnimationPlaying(anim, PLAYER_JUMP))
+        {
+            if (IsGrounded())
+            {
+                ChangeAnimationState(PLAYER_WALK);
+            }
         }
 
 
@@ -79,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (IsGrounded())
             {
-                ChangeAnimationState(PLAYER_WALK);
+                ChangeAnimationState(PLAYER_IDLE);
             }
         }
     }
