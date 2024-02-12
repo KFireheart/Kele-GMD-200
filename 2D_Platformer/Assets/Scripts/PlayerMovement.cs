@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
 
     Animator anim;
     string currentState;
+    bool isJumping = false;
+
     const string PLAYER_IDLE = "Idle";
     const string PLAYER_JUMP = "Jump";
     const string PLAYER_WALK = "Walking";
@@ -41,12 +43,20 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //Animator.SetBool("isJumping", jump);
+
         horizontal = Input.GetAxisRaw("Horizontal");
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-            
+
+            anim.SetBool("isJumping", true);
+        }
+        else
+        {
+            anim.SetBool("isJumping", false);
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
@@ -70,12 +80,11 @@ public class PlayerMovement : MonoBehaviour
         if (!isWallJumping)
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-            ChangeAnimationState(PLAYER_WALK);
 
         }
 
         
-        if(!IsAnimationPlaying(anim, PLAYER_JUMP))
+        /*if(!IsAnimationPlaying(anim, PLAYER_JUMP))
         {
             if (IsGrounded())
             {
@@ -88,9 +97,9 @@ public class PlayerMovement : MonoBehaviour
         {
             if (IsGrounded())
             {
-                ChangeAnimationState(PLAYER_IDLE);
+               ChangeAnimationState(PLAYER_IDLE);
             }
-        }
+        }*/
     }
 
 
@@ -172,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void ChangeAnimationState(string newState)
+   /* private void ChangeAnimationState(string newState)
     {
         if (newState == currentState)
         {
@@ -194,5 +203,5 @@ public class PlayerMovement : MonoBehaviour
         {
             return false;
         }
-    }
+    }*/
 }
