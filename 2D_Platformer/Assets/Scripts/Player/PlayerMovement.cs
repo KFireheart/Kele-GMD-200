@@ -21,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
 
     Animator anim;
     string currentState;
-    bool isJumping = false;
 
     const string PLAYER_IDLE = "Idle";
     const string PLAYER_JUMP = "Jump";
