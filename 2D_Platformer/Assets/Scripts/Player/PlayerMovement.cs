@@ -43,20 +43,14 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-        //Animator.SetBool("isJumping", jump);
-
         horizontal = Input.GetAxisRaw("Horizontal");
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
 
-            anim.SetBool("isJumping", true);
         }
-        else
-        {
-            anim.SetBool("isJumping", false);
-        }
+       
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
@@ -81,24 +75,6 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
         }
-
-        
-        /*if(!IsAnimationPlaying(anim, PLAYER_JUMP))
-        {
-            if (IsGrounded())
-            {
-                ChangeAnimationState(PLAYER_WALK);
-            }
-        }
-
-
-        if(!IsAnimationPlaying(anim, PLAYER_JUMP))
-        {
-            if (IsGrounded())
-            {
-               ChangeAnimationState(PLAYER_IDLE);
-            }
-        }*/
     }
 
 
@@ -179,28 +155,4 @@ public class PlayerMovement : MonoBehaviour
             transform.Rotate(0f, 180f, 0f);
         }
     }
-
-   /* private void ChangeAnimationState(string newState)
-    {
-        if (newState == currentState)
-        {
-            return;
-        }
-        anim.Play(newState);
-        currentState = newState;
-
-    }
-
-    bool IsAnimationPlaying(Animator animator, string stateName)
-    {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName(stateName) &&
-            animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }*/
 }
