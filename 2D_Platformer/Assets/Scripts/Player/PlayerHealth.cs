@@ -1,27 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     public float maxHeath;
-    public float heath;
+    public float health;
     public Image heathBar;
+    [SerializeField] public GameOverScript gameOverScript;
+
+    GameOverScript gameIsOver;
+
 
     private void Start()
     {
-        maxHeath = heath;
+        maxHeath = health;
+       
     }
 
 
     private void Update()
     {
-        heathBar.fillAmount = Mathf.Clamp(heath / maxHeath, 0, 1);
+        heathBar.fillAmount = Mathf.Clamp(health / maxHeath, 0, 1);
 
-        if(heath <= 0)
+        if(health <= 0)
         {
-            Debug.Log("Died");
+            gameOverScript.gameOver();
         }
     }
 }

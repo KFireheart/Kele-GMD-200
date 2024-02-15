@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameOverScript : MonoBehaviour
 {
-    public static bool GameIsOver;
-
     public GameObject gameOverUI;
 
     //Runs enables game over menu
