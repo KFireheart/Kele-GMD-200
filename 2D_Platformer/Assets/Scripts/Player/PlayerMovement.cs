@@ -17,14 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private float wallJumpingTime = 0.2f;
     private float wallJumpingCounter;
     private float wallJumpingDuration = 0.4f;
-    private Vector2 wallJumpingPower = new Vector2(8f, 14f);
-
-    Animator anim;
-    string currentState;
-
-    const string PLAYER_IDLE = "Idle";
-    const string PLAYER_JUMP = "Jump";
-    const string PLAYER_WALK = "Walking";
+    private Vector2 wallJumpingPower = new Vector2(8f, 16f);
 
 
     [SerializeField] private Rigidbody2D rb;
@@ -33,11 +26,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
 
-
-    private void Start()
-    {
-        anim = gameObject.GetComponent<Animator>();
-    }
 
     // Update is called once per frame
     void Update()
@@ -109,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isWallSliding)
         {
-            isWallSliding = false;
+            isWallJumping = false;
             wallJumpingDirection = -transform.localScale.x;
             wallJumpingCounter = wallJumpingTime;
 
