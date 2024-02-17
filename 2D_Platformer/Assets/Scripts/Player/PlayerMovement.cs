@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
-    public float speed = 8f;
-    public float jumpingPower = 16f;
+    private float speed = 8f;
+    private float jumpingPower = 16f;
     private bool isFacingRight = true;
 
     private bool isWallSliding;
@@ -19,26 +19,20 @@ public class PlayerMovement : MonoBehaviour
     private float wallJumpingDuration = 0.4f;
     private Vector2 wallJumpingPower = new Vector2(8f, 16f);
 
-
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
 
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
         horizontal = Input.GetAxisRaw("Horizontal");
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-
         }
-       
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
@@ -52,8 +46,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Flip();
         }
-
-
     }
 
     private void FixedUpdate()
@@ -61,10 +53,8 @@ public class PlayerMovement : MonoBehaviour
         if (!isWallJumping)
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-
         }
     }
-
 
     private bool IsGrounded()
     {
@@ -78,18 +68,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallSlide()
     {
-
-
         if (IsWalled() && !IsGrounded() && horizontal != 0f)
         {
-
             isWallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
         }
         else
         {
             isWallSliding = false;
-
         }
     }
 
@@ -100,7 +86,6 @@ public class PlayerMovement : MonoBehaviour
             isWallJumping = false;
             wallJumpingDirection = -transform.localScale.x;
             wallJumpingCounter = wallJumpingTime;
-
 
             CancelInvoke(nameof(StopWallJumping));
         }
@@ -122,25 +107,24 @@ public class PlayerMovement : MonoBehaviour
                 localScale.x *= -1f;
                 transform.localScale = localScale;
             }
+
             Invoke(nameof(StopWallJumping), wallJumpingDuration);
         }
     }
-
 
     private void StopWallJumping()
     {
         isWallJumping = false;
     }
 
-
     private void Flip()
     {
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
             isFacingRight = !isFacingRight;
-
-
-            transform.Rotate(0f, 180f, 0f);
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
         }
     }
 }
