@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private float speed = 8f;
     private float jumpingPower = 16f;
     private bool isFacingRight = true;
+    private bool isWalking = false;
 
     private bool isWallSliding;
     private float wallSlidingSpeed = 2f;
@@ -24,6 +25,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
+
+
+    //animator variables
+    private Animator anim;
+
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     private void Update()
     {
@@ -46,6 +57,16 @@ public class PlayerMovement : MonoBehaviour
         {
             Flip();
         }
+
+        if(IsGrounded() && !isWallJumping)
+        {
+            anim.SetBool("IsWalking", true);
+        }
+        else
+        {
+            anim.SetBool("IsWalking", false);
+        }
+
     }
 
     private void FixedUpdate()
@@ -54,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         }
+        
     }
 
     private bool IsGrounded()

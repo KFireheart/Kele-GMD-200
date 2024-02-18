@@ -24,11 +24,11 @@ public class EnemyPatrol : MonoBehaviour
         Vector2 point = currentpoint.position - transform.position;
         if (currentpoint == pointB.transform)
         {
-            rb.velocity = new Vector2(-speed, 0);
+            rb.velocity = new Vector2(speed, 0);
         }
         else
         {
-            rb.velocity = new Vector2(speed, 0);
+            rb.velocity = new Vector2(-speed, 0);
         }
 
         if (Vector2.Distance(transform.position, currentpoint.position) < 0.5f && currentpoint == pointB.transform)

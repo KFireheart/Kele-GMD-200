@@ -13,7 +13,29 @@ public class EnemyShoot : MonoBehaviour
     //Starts shooting every 1 second, and makes the liftime 2 seconds
     void Start()
     {
-        InvokeRepeating("shoot", 1f, 2f);
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    private void Update()
+    {
+        
+
+        /*float distance = Vector2.Distance(transform.position, player.transform.position);
+        Debug.Log(distance);
+
+        if(distance < 10)
+        {
+            timer += Time.time;
+
+            if (timer > 2)
+            {
+                timer = 0;
+                shoot();
+
+            }
+        }*/
+
+        
     }
 
 
