@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
             Flip();
         }
 
-        if(IsGrounded() && !isWallJumping)
+        if(IsGrounded())
         {
             anim.SetBool("IsWalking", true);
         }
