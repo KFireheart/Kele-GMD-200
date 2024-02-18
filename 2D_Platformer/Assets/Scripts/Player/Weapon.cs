@@ -7,15 +7,7 @@ public class Weapon : MonoBehaviour
 
     public Transform firePoint;
     public GameObject bulletPrefab;
-    //private Animation anim;
 
-    //string currentState;
-    //const string SHOOT_ANIM = ("Muzzle Flash_Clip");
-
-    private void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
