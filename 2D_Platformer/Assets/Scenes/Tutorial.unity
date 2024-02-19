@@ -472,6 +472,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 7236428406521147957, guid: 2a9e755ecc9077a4cb544295efe16474, type: 3}
+      propertyPath: orthographic size
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -726,6 +730,10 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1741463864}
+    - target: {fileID: 4903417194703403953, guid: fecbbec179b98974ebd2611f3170978e, type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6952670440437393466, guid: fecbbec179b98974ebd2611f3170978e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.39

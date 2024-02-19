@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
         if (PauseMenu.GameIsPaused == false)
         {
             horizontal = Input.GetAxisRaw("Horizontal");
-            if (horizontal >= .010f && horizontal <= .07f) horizontal = 0;
+            if (horizontal >= .09f && horizontal <= .08f) horizontal = 0;
 
             if (Input.GetButtonDown("Jump") && IsGrounded())
             {

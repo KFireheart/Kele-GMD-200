@@ -43784,6 +43784,74 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3287456693950748975, guid: 2008e09447ebd514ea4af9a40eff4b4a, type: 3}
   m_PrefabInstance: {fileID: 1341617851}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1399161941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1399161944}
+  - component: {fileID: 1399161943}
+  - component: {fileID: 1399161942}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1399161942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399161941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &1399161943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399161941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &1399161944
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399161941}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1436741313
 GameObject:
   m_ObjectHideFlags: 0
@@ -44145,11 +44213,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1728048175}
   m_CullTransparentMesh: 1
---- !u!4 &1764140653 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1063707007164454079, guid: 2de4eb5f9fd65ef4588462cc1e270b61, type: 3}
-  m_PrefabInstance: {fileID: 1849353557}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1764140654 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7961911417361147018, guid: 2de4eb5f9fd65ef4588462cc1e270b61, type: 3}
@@ -44427,6 +44490,18 @@ PrefabInstance:
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 837639079}
+    - target: {fileID: 3862726962873806278, guid: 2de4eb5f9fd65ef4588462cc1e270b61, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3862726962873806278, guid: 2de4eb5f9fd65ef4588462cc1e270b61, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3862726962873806278, guid: 2de4eb5f9fd65ef4588462cc1e270b61, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 6362538077575949597, guid: 2de4eb5f9fd65ef4588462cc1e270b61, type: 3}
       propertyPath: PauseMenu
       value: 
@@ -47227,7 +47302,7 @@ PrefabInstance:
     - target: {fileID: 4903417194703403953, guid: fecbbec179b98974ebd2611f3170978e, type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 1764140653}
+      objectReference: {fileID: 0}
     - target: {fileID: 6952670440437393466, guid: fecbbec179b98974ebd2611f3170978e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.495
@@ -47290,3 +47365,4 @@ SceneRoots:
   - {fileID: 630633739}
   - {fileID: 359696549}
   - {fileID: 1436741314}
+  - {fileID: 1399161944}
