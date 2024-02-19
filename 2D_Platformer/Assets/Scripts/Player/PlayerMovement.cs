@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float horizontal;
-    private float speed = 8f;
+    public float horizontal;
+    public float speed = 8f;
     private float jumpingPower = 16f;
     private bool isFacingRight = true;
 
     private bool isWallSliding;
     private float wallSlidingSpeed = 2f;
 
-    private bool isWallJumping;
+    public bool isWallJumping;
     private float wallJumpingDirection;
     private float wallJumpingTime = 0.2f;
     private float wallJumpingCounter;
@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
+        if (horizontal >=  .26f && horizontal <= .50f) horizontal = 0;
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
@@ -48,14 +49,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+     private void FixedUpdate()
     {
         if (!isWallJumping)
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         }
     }
-
+   
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);

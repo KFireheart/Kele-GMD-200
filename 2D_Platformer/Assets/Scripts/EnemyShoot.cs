@@ -21,19 +21,11 @@ public class EnemyShoot : MonoBehaviour
         
 
         float distance = Vector2.Distance(transform.position, player.transform.position);
-        Debug.Log(distance);
-
-        if(distance < 10)
+        if(distance < 10 && timer > 5)
         {
-            timer += Time.time;
-
-            if (timer > 10)
-            {
-                timer = 0;
-                
-
-            }
+            shoot();
         }
+        timer += Time.deltaTime;
 
         
     }
@@ -43,6 +35,7 @@ public class EnemyShoot : MonoBehaviour
     void shoot()
     {
         Instantiate(bulletPrefab, bulletPos.position, Quaternion.identity);
+        timer = 0; 
         //AudioManager.Instance.PlaySFX("EnemyPew");
     }
 }
