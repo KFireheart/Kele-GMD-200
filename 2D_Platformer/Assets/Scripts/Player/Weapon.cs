@@ -7,6 +7,13 @@ public class Weapon : MonoBehaviour
 
     public Transform firePoint;
     public GameObject bulletPrefab;
+    public PlayerMovement playerMovement;
+    
+
+    private void Start()
+    {
+       
+    }
 
 
     // Update is called once per frame
@@ -18,8 +25,17 @@ public class Weapon : MonoBehaviour
             
         }
 
+        RotateGun();
+       
 
     }
+
+    private void RotateGun()
+    {
+
+    }
+
+    
 
 
     void Shoot()

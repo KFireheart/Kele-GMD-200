@@ -20,20 +20,20 @@ public class EnemyShoot : MonoBehaviour
     {
         
 
-        /*float distance = Vector2.Distance(transform.position, player.transform.position);
+        float distance = Vector2.Distance(transform.position, player.transform.position);
         Debug.Log(distance);
 
         if(distance < 10)
         {
             timer += Time.time;
 
-            if (timer > 2)
+            if (timer > 10)
             {
                 timer = 0;
-                shoot();
+                
 
             }
-        }*/
+        }
 
         
     }
