@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
-        if (horizontal >=  .26f && horizontal <= .50f) horizontal = 0;
+        if (horizontal >=  .12f && horizontal <= .16f) horizontal = 0;
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
