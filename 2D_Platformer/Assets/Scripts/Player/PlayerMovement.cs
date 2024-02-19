@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float horizontal;
     public float speed = 8f;
     private float jumpingPower = 16f;
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
 
     private bool isWallSliding;
     private float wallSlidingSpeed = 2f;
@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
         if (PauseMenu.GameIsPaused == false)
         {
             horizontal = Input.GetAxisRaw("Horizontal");
-            if (horizontal >= .05f && horizontal <= .07f) horizontal = 0;
+            if (horizontal >= .010f && horizontal <= .07f) horizontal = 0;
 
             if (Input.GetButtonDown("Jump") && IsGrounded())
             {

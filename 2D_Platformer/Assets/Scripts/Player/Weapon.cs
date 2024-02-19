@@ -30,6 +30,16 @@ public class Weapon : MonoBehaviour
 
 
         }
+
+
+       if(playerMovement.isFacingRight == false)
+        {
+            firePoint.transform.Rotate(0, -180, 0);
+        }
+        else if(playerMovement.isFacingRight == true)
+        {
+            firePoint.transform.Rotate(0, 180, 0);
+        }
     }
 
 
