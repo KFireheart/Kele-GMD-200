@@ -25,27 +25,33 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
 
+    public PauseMenu PauseMenu;
+
     private void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        if (horizontal >=  .12f && horizontal <= .16f) horizontal = 0;
-
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (PauseMenu.GameIsPaused == false)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-        }
+            horizontal = Input.GetAxisRaw("Horizontal");
+            if (horizontal >= .05f && horizontal <= .07f) horizontal = 0;
 
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-        }
+            if (Input.GetButtonDown("Jump") && IsGrounded())
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            }
 
-        WallSlide();
-        WallJump();
+            if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            }
 
-        if (!isWallJumping)
-        {
-            Flip();
+            WallSlide();
+            WallJump();
+
+            if (!isWallJumping)
+            {
+                Flip();
+            }
+
         }
     }
 

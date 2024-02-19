@@ -1785,14 +1785,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1979733233449189504, guid: 2de4eb5f9fd65ef4588462cc1e270b61, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1119340070}
     - target: {fileID: 6362538077575949597, guid: 2de4eb5f9fd65ef4588462cc1e270b61, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6362538077575949597, guid: 2de4eb5f9fd65ef4588462cc1e270b61, type: 3}
-      propertyPath: isWallJumping
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: PauseMenu
+      value: 
+      objectReference: {fileID: 1119340070}
     - target: {fileID: 7961911417361147018, guid: 2de4eb5f9fd65ef4588462cc1e270b61, type: 3}
       propertyPath: heathBar
       value: 
@@ -7345,7 +7345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feef62b1edf18ee42ac9e6215b396053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 0}
+  pauseMenuUI: {fileID: 505479521}
 --- !u!114 &1119340071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7444,7 +7444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2107db0c56712664984dd8007c5e54ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverUI: {fileID: 0}
+  gameOverUI: {fileID: 23453196}
 --- !u!4 &1143956747 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3287456693950748975, guid: 2008e09447ebd514ea4af9a40eff4b4a, type: 3}

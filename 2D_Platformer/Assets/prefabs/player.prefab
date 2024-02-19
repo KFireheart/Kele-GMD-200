@@ -163,6 +163,7 @@ MonoBehaviour:
   firePoint: {fileID: 3862726962873806278}
   bulletPrefab: {fileID: 2645147043111506542, guid: 64801afb87e17e54887503faa5059d2c, type: 3}
   playerMovement: {fileID: 6362538077575949597}
+  pauseMenu: {fileID: 0}
 --- !u!1 &7367107593953490381
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,6 +392,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a323af8aa8209224984c11efe59b0fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  horizontal: 0
+  speed: 8
+  isWallJumping: 0
   rb: {fileID: 29451411888752953}
   groundCheck: {fileID: 5174043586238452756}
   groundLayer:
@@ -400,6 +404,7 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 128
+  PauseMenu: {fileID: 0}
 --- !u!114 &7961911417361147018
 MonoBehaviour:
   m_ObjectHideFlags: 0

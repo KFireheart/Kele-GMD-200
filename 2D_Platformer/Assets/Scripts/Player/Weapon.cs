@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
     public PlayerMovement playerMovement;
+    public PauseMenu pauseMenu;
     
 
     private void Start()
@@ -19,23 +20,17 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (PauseMenu.GameIsPaused == false)
         {
-            Shoot();
-            
+            if (Input.GetMouseButtonDown(0))
+            {
+                Shoot();
+
+            }
+
+
         }
-
-        RotateGun();
-       
-
     }
-
-    private void RotateGun()
-    {
-
-    }
-
-    
 
 
     void Shoot()
